@@ -55,7 +55,7 @@ ROOT_URLCONF = 'docesdaleite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,9 +78,9 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'docesdaleite',
-        'USER': 'postgres',
-        'PASSWORD': '22328490',
+        'NAME': 'docesdaleite', # Criar banco com esse nome
+        'USER': 'postgres', #mudar isso
+        'PASSWORD': '22328490', #mudar isso
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -124,3 +124,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
