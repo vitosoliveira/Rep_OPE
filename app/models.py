@@ -40,6 +40,7 @@ class Tamanho (models.Model):
     valor_tamanho = models.FloatField('valor_tamanho',max_length = 20)
 
 class Bolo (models.Model):
+    id_tamanho = models.AutoField('id_bolo', primary_key = True)
     sem_glutem = models.IntegerField('glutem')
     sem_lactose = models.IntegerField('lactose')
     bolo_recheio = models.ForeignKey(Recheio, verbose_name="Bolo_Recheio", on_delete = models.CASCADE)
@@ -54,9 +55,9 @@ class Cliente (models.Model):
     nome_cliente = models.CharField('nome_cliente', max_length=50)
     telefone_cliente = models.CharField('telefone', max_length=15)
     endereco_cliente = models.CharField('endereco', max_length=50)
-    cpf_cliente = models.CharField('cpf',max_length=15)
-    email = models.EmailField(max_length = 254)
-
+    cpf_cliente = models.CharField('cpf',unique=True, max_length=15 )
+    email = models.EmailField('email',unique=True, max_length = 254)
+    senha = models.CharField('senha', max_length=20)
 
 class Pedido (models.Model):
     id_pedido = models.AutoField('id_pedido', primary_key=True)
