@@ -4,5 +4,5 @@ from .views import home,cadastrar
 
 urlpatterns = [
     path('', home),
-    path('cadastro', cadastrar, name="cadatroCliente")
+    path('cadastro', cadastrar, name="cadatroCliente", )
 ]

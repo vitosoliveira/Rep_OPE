@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
-
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser
+from cpf_field.models import CPFField
 
 class Massa (models.Model):
     id_massa = models.AutoField('id_massa',primary_key = True)
@@ -55,9 +55,9 @@ class Cliente (models.Model):
     nome_cliente = models.CharField('nome_cliente', max_length=50)
     telefone_cliente = models.CharField('telefone', max_length=15)
     endereco_cliente = models.CharField('endereco', max_length=50)
-    cpf_cliente = models.CharField('cpf',unique=True, max_length=15 )
+    cpf_cliente = CPFField()
     email = models.EmailField('email',unique=True, max_length = 254)
-    senha = models.CharField('senha', max_length=20)
+    password = models.CharField('senha', max_length=255)
 
 class Pedido (models.Model):
     id_pedido = models.AutoField('id_pedido', primary_key=True)

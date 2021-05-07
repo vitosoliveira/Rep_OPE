@@ -1,12 +1,20 @@
-{% extends "base.html" %}`
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load static%}
 
 {%block conteudo%}
-    <h2>New post</h2>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p}}
+<div class="container">
+
+    <form method="POST">{% csrf_token %}
+        {{form.nome_cliente|as_crispy_field}}
+        {{form.telefone_cliente|as_crispy_field}}
+        {{form.endereco_cliente|as_crispy_field}}
+        {{form.cpf_cliente|as_crispy_field}}
+        {{form.email|as_crispy_field}}
+        {{form.password|as_crispy_field}}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
+</div>
 {%endblock conteudo%}
 
 <!-- https://makeacake.com.br/ -->
