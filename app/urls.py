@@ -1,8 +1,8 @@
 from django.urls import path
-
-from .views import home,cadastrar
+from django.contrib.auth import views as auth_views
+from .views import home,cadastrar,login
 
 urlpatterns = [
     path('', home),
-    path('cadastro', cadastrar, name="cadatroCliente", )
+    path('cadastro', cadastrar, name="cadatroCliente"),
 ]

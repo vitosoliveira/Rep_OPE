@@ -1,5 +1,5 @@
 from django import forms
-# from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # from django.contrib.auth.models import User
 from .models import Cliente
 from cpf_field.models import CPFField
@@ -7,27 +7,24 @@ from cpf_field.models import CPFField
 
 
 
-class ClienteForm(forms.ModelForm):
-    nome_cliente = forms.CharField(required=True, max_length=50)
-    telefone_cliente = forms.CharField(required=True, max_length=15)
-    endereco_cliente = forms.CharField(required=True, max_length=50)
-    cpf_cliente = CPFField()
-    email = forms.EmailField(required=True, max_length = 254, help_text='Required. Inform a valid email address.')
-    password = forms.CharField(required=True ,max_length=20, widget=forms.PasswordInput)
-
-    def get_password(self):
-        return self.password
+class ClienteForm(UserCreationForm):
     class Meta:
         model = Cliente
-        fields = ["nome_cliente", 
-        "telefone_cliente", 
-        "endereco_cliente", 
-        "cpf_cliente", "email", "password"]
+        fields = ('first_name','last_name', 'email', 'cpf', 'password')
+        labels = {'username': 'Username/E-mail'}
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password1'])
+        user.email = self.cleaned_data['username']
+        if commit:
+            user.save()
+        return user
 
-        error_messages = {
-            'nome': {
-                'required': 'teste'
-            }
-        }
+class CustomClienteChangeForm(UserChangeForm):
+    class Meta:
+        model = Cliente
+        fields = ('first_name','last_name', 'cpf')
 
+        
 

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from cpf_field.models import CPFField
 
 class Massa (models.Model):
@@ -49,15 +49,50 @@ class Bolo (models.Model):
     bolo_cobertura = models.ForeignKey(Cobertura, verbose_name="Bolo_cobertura", on_delete=models.CASCADE)
     bolo_tamanho = models.ForeignKey(Tamanho, verbose_name="Bolo_Tamanho", on_delete=models.CASCADE)
     valor_bolo = models.DecimalField('valor_bolo', max_digits = 6, decimal_places = 2)
-	
-class Cliente (models.Model):
-    id_cliente = models.AutoField('id_cliente', primary_key=True)
-    nome_cliente = models.CharField('nome_cliente', max_length=50)
-    telefone_cliente = models.CharField('telefone', max_length=15)
-    endereco_cliente = models.CharField('endereco', max_length=50)
-    cpf_cliente = CPFField()
+
+class ClienteManager(BaseUserManager):
+
+    use_in_migrations = True
+
+    def _create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('O email é obrigatorio')
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_user(self, email, password=None,  **extra_fields):
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email,password, **extra_fields)
+
+    def create_superuser(self, email, password=None,  **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Super precisa ser true')
+        
+
+        return self._create_user(email,password, **extra_fields)
+
+        
+class Cliente (AbstractUser):
     email = models.EmailField('email',unique=True, max_length = 254)
-    password = models.CharField('senha', max_length=255)
+    telefone = models.CharField('telefone', max_length=15)
+    endereco = models.CharField('endereco', max_length=50)
+    cpf = CPFField()
+    
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
+
+    def __str__(self):
+        return self.email
+    
+    objects = ClienteManager()
+    
+
 
 class Pedido (models.Model):
     id_pedido = models.AutoField('id_pedido', primary_key=True)

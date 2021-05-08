@@ -6,12 +6,13 @@
 <div class="container">
 
     <form method="POST">{% csrf_token %}
-        {{form.nome_cliente|as_crispy_field}}
-        {{form.telefone_cliente|as_crispy_field}}
-        {{form.endereco_cliente|as_crispy_field}}
-        {{form.cpf_cliente|as_crispy_field}}
+        {{form.first_name|as_crispy_field}}
+        {{form.last_name|as_crispy_field}}
         {{form.email|as_crispy_field}}
-        {{form.password|as_crispy_field}}
+        {{form.password1|as_crispy_field}}
+        {{form.password2|as_crispy_field}}
+        {{form.cpf|as_crispy_field}}
+
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 </div>
