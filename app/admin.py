@@ -2,7 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 from .forms import ClienteForm, CustomClienteChangeForm
-from .models import Cliente
+from .models import Cliente, Produto
+
+
+@admin.register(Produto)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display=('nome' , 'preco', 'estoque', 'slug', 'criado','modificado','ativo')
 
 @admin.register(Cliente)
 class CustomClienteAdmin(UserAdmin):

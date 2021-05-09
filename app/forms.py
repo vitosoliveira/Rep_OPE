@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # from django.contrib.auth.models import User
-from .models import Cliente
+from .models import Cliente, Produto
 from cpf_field.models import CPFField
 
 
@@ -28,3 +28,7 @@ class CustomClienteChangeForm(UserChangeForm):
 
         
 
+class ProdutoModelForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = ['nome','preco','estoque','imagem']
