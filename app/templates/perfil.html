@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static%}
+
+{%block conteudo%}
+<div class="container">
+    <h1>Teste</h1>
+    {% if user.is_anonymous %}
+        <a href="">login</a>
+    {% else %}
+        <div class="alert alert-primary">
+            <h2>Seja bem vindo{{ users.get_full_name }}</h2>
+            <a href="">logout</a>
+
+        </div>
+    {% endif %}
+</div>
+{%endblock conteudo%}
+
+<!-- https://makeacake.com.br/ -->

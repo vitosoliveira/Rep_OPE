@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'crispy_forms',
     'cpf_field',
-    'bootstrap4',#instalar
-    'django.contrib.messages'#instalar
+    # 'bootstrap4',#instalar
+    # 'django.contrib.messages',#instalar
     'stdimage' #instalar
 ]
 
@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'docesdaleite', # Criar banco com esse nome
         'USER': 'postgres', #mudar isso
-        'PASSWORD': '1456321', #mudar isso
+        'PASSWORD': '22328490', #mudar isso
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -134,6 +134,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-LOGIN_REDIRECT_URL = 'home.html'
+LOGIN_REDIRECT_URL = 'perfil'
+LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'app.Cliente'

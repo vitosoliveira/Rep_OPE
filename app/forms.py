@@ -10,7 +10,7 @@ from cpf_field.models import CPFField
 class ClienteForm(UserCreationForm):
     class Meta:
         model = Cliente
-        fields = ('first_name','last_name', 'email', 'cpf', 'password')
+        fields = ('first_name','last_name', 'cpf','username')
         labels = {'username': 'Username/E-mail'}
     
     def save(self, commit=True):
