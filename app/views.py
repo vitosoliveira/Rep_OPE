@@ -1,3 +1,4 @@
+from docesdaleite.settings import AUTH_USER_MODEL
 from .forms import ClienteForm, ProdutoModelForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -13,24 +14,7 @@ def home (request):
     return render (request, 'home.html')
 
 def produto(request):
-    if str(request.method) == 'POST':
-        form = ProdutoModelForm(request.POST, request.FILES)
-        if form.is_valid():
-            prod = form.save(commit=False)
-            print(f'Nome: {prod.nome}')
-            print(f'Preço: {prod.preco}')
-            print(f'Estoque: {prod.estoque}')
-            print(f'Imagem: {prod.imagem}')
-            messages.success(request, 'Produto salvo com sucesso.')
-        else:
-            messages.error(request, 'Erro ao salvar produto.')
-    else:
-        form = ProdutoModelForm()
-    context = {
-        'form': form
-    }
-
-    return render(request, 'produto.html', context)
+    return render(request, 'produto.html')
 
 
 def cadastrar (request):
@@ -45,4 +29,13 @@ def cadastrar (request):
 
 
 def perfil (request):
-    return render (request, 'perfil.html')
+    if AUTH_USER_MODEL == login:
+        return render (request, 'perfil.html')
+    else:
+        return redirect('login')
+    
+
+def cart (request):
+    return render(request, 'cart.html')
+
+

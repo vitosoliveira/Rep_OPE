@@ -9,10 +9,8 @@
             {% csrf_token %}
             <input type="email" id="username" name="username" class="form-control" placeholder="Email">
             <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>        </form>
-    {% else %}
-        <h1>Seja bem vindo {{ user.get_full_name}} </h1>
-        <a href="{% url 'logout' %}">logout</a>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>       
+        </form>
     {% endif %}
 </div>
 {%endblock conteudo%}

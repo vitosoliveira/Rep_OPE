@@ -40,9 +40,16 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'crispy_forms',
     'cpf_field',
+    'debug_toolbar',
     # 'bootstrap4',#instalar
     # 'django.contrib.messages',#instalar
     'stdimage' #instalar
+]
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -55,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'docesdaleite.urls'
