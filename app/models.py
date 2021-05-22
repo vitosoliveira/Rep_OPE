@@ -18,18 +18,18 @@ class Base(models.Model):
 
 class Produto(Base):
     PRODUTO_CHOICES = (
-        (0, "Massa"),
-        (1, "Cobertura"),
-        (2, "Recheio"),
-        (3, "Tamanho"),
-        (4, "Topping")        
+        ("Massa", "Massa"),
+        ("Cobertura", "Cobertura"),
+        ("Recheio", "Recheio"),
+        ("Tamanho", "Tamanho"),
+        ("Topping", "Topping")        
     )
 
     nome = models.CharField('nome', max_length=100)
     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
     estoque = models.IntegerField('Estoque')
-    tipo = models.CharField(max_length=1, choices=PRODUTO_CHOICES, blank=False, default=0)
-    imagem = StdImageField('Imagem', upload_to='produtos', variations={'thumb': (124,124)})
+    tipo = models.CharField(max_length=5, choices=PRODUTO_CHOICES, blank=False, null=False)
+    imagem = StdImageField('Imagem', upload_to='produtos',  blank=True, variations={'thumb': (124,124)})
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
 
     def __str__(self):

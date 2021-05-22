@@ -4,12 +4,248 @@
 
 {%block conteudo%}
     <div class="container">
-        <h1>Produtos</h1>
-        <form action="{% url 'produto' %}" method="POST" class="form csrf" autocomplete="off" enctype="multipart/form-data">
-            {% csrf_token  %}  
-            
-            {{form}}
-                <button type="submit" class="btn btn-primary ">Cadastrar</button>
-        </form>
+        <br>
+        <center><h1>Monte o seu Pedido</h1></center>    
+        <br>
+    <center> 
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tamanho do bolo</h5>
+                  <p class="card-text">Selecione o tamanho do bolo</p>
+                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBolo">Selecionar</a>
+                </div>
+              </div>
+              <!-- Modal -->
+                <div class="modal fade" id="modalBolo" tabindex="-1" role="dialog" aria-labelledby="modalBolo" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="modalBolo">Selecione o Tamanho do bolo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Preço</th>                                        
+                                        <th scope="col">Selecione</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for produto in tamanho%}
+                                        <tr>
+                                            <td scope="row">{{ produto.nome }}</td>
+                                            <td scope="row">{{ produto.preco }}</td>                                            
+                                            <td scope="row"><a type="button" class="btn btn-primary">Selecionar</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>                        
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- /Modal -->
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Massa do bolo</h5>
+                  <p class="card-text">Selecione a massa do bolo</p>
+                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalmassa">Selecionar</a>
+                </div>
+              </div>
+            </div>
+              <!-- Modal -->
+              <div class="modal fade" id="modalmassa" tabindex="-1" role="dialog" aria-labelledby="modalmassa" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalmassa">Selecione a Massa do bolo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Preço</th>                                    
+                                    <th scope="col">Selecione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in massa%}
+                                    <tr>
+                                        <td scope="row">{{ produto.nome }}</td>
+                                        <td scope="row">{{ produto.preco }}</td>                                        
+                                        <td scope="row"><a type="button" class="btn btn-primary">Selecionar</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                        
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>                    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /Modal -->            
+          </div>  
+          <br>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recheio do bolo</h5>
+                    <p class="card-text">Selecione o tamanho do recheio</p>
+                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalrecheio">Selecionar</a>
+                </div>
+              </div>
+            </div>
+              <!-- Modal -->
+              <div class="modal fade" id="modalrecheio" tabindex="-1" role="dialog" aria-labelledby="modalrecheio" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalrecheio">Selecione o Recheio do bolo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Preço</th>                                    
+                                    <th scope="col">Selecione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in recheio%}
+                                    <tr>
+                                        <td scope="row">{{ produto.nome }}</td>
+                                        <td scope="row">{{ produto.preco }}</td>                                        
+                                        <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                        
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>  
+                    <button type="button" class="btn btn-primary">salvar</button>                    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /Modal -->                   
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cobertura do bolo</h5>
+                    <p class="card-text">Selecione o tamanho do cobertura</p>
+                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCobertura">Selecionar</a>
+                </div>
+              </div>
+            </div>
+              <!-- Modal -->
+              <div class="modal fade" id="modalCobertura" tabindex="-1" role="dialog" aria-labelledby="modalCobertura" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalCobertura">Selecione o tamanho do cobertura</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Preço</th>                                    
+                                    <th scope="col">Selecione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in cobertura%}
+                                    <tr>
+                                        <td scope="row">{{ produto.nome }}</td>
+                                        <td scope="row">{{ produto.preco }}</td>                                        
+                                        <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                        
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>   
+                    <button type="button" class="btn btn-primary">salvar</button>                    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /Modal -->                   
+            <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Topping do bolo</h5>
+                      <p class="card-text">Selecione o tamanho do topping</p>
+                      <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTopping">Selecionar</a>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="modalTopping" tabindex="-1" role="dialog" aria-labelledby="modalTopping" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopping">Selecione o tamanho do topping</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Preço</th>                                    
+                                    <th scope="col">Selecione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in topping%}
+                                    <tr>
+                                        <td scope="row">{{ produto.nome }}</td>
+                                        <td scope="row">{{ produto.preco }}</td>                                        
+                                        <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                        
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>    
+                    <button type="button" class="btn btn-primary">salvar</button>                    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /Modal -->                     
+          </div>  
+        </center> 
     </div>
 {%endblock conteudo%}

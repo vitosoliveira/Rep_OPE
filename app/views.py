@@ -3,8 +3,8 @@ from .forms import ClienteForm, ProdutoModelForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
-from .models import Cliente
-from django.template import RequestContext
+from .models import Cliente, Produto
+from django.template import RequestContext, context
 from django.contrib.messages import constants
 
 # from django.http import HttpResponse
@@ -14,7 +14,15 @@ def home (request):
     return render (request, 'home.html')
 
 def produto(request):
-    return render(request, 'produto.html')
+    context={        
+        'tamanho': Produto.objects.filter(tipo="Tamanho"),
+        'massa': Produto.objects.filter(tipo="Massa"),
+        'recheio': Produto.objects.filter(tipo="Recheio"),
+        'cobertura': Produto.objects.filter(tipo="Cobertura"),
+        'topping': Produto.objects.filter(tipo="Topping")
+
+    }
+    return render(request, 'produto.html', context)
 
 
 def cadastrar (request):
