@@ -86,9 +86,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'docesdaleite.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = 'testesite_app'
+EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0ord'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'TestSite team <norep1y@example.com>'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+
 
 DATABASES = {
 

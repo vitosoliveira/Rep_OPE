@@ -9,7 +9,8 @@
             {% csrf_token %}
             <input type="email" id="username" name="username" class="form-control" placeholder="Email">
             <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>       
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>   
+            <a href="{% url 'resetPassword' %}">Esqueceu a senha ?</a>    
         </form>
     {% endif %}
 </div>

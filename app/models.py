@@ -28,7 +28,7 @@ class Produto(Base):
     nome = models.CharField('nome', max_length=100)
     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
     estoque = models.IntegerField('Estoque')
-    tipo = models.CharField(max_length=5, choices=PRODUTO_CHOICES, blank=False, null=False)
+    tipo = models.CharField(max_length=9, choices=PRODUTO_CHOICES, blank=False, null=False)
     imagem = StdImageField('Imagem', upload_to='produtos',  blank=True, variations={'thumb': (124,124)})
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
 
