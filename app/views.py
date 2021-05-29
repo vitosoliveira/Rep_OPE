@@ -1,14 +1,15 @@
 from docesdaleite.settings import AUTH_USER_MODEL
 from .forms import ClienteForm, ProdutoModelForm
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
-from django.contrib.auth import login, authenticate
-from .models import Cliente, Produto
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth import authenticate, login
+from .models import Carrinho, Cliente, Produto, Carrinho
 from django.template import RequestContext, context
 from django.contrib.messages import constants
+from carts.models import Cart
+
 
 # from django.http import HttpResponse
-
 
 def home (request):
     return render (request, 'home.html')
@@ -42,8 +43,3 @@ def perfil (request):
     else:
         return redirect('login')
     
-
-def cart (request):
-    return render(request, 'cart.html')
-
-

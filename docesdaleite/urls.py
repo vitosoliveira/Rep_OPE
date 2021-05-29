@@ -17,11 +17,13 @@ import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from carts.views import cart_home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls'), name="home"),
     path('contas/', include('django.contrib.auth.urls')),
+    path('cart/', cart_home, name='cart'),
     path('__debug__/', include(debug_toolbar.urls))
 
 ]

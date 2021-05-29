@@ -3,69 +3,145 @@
 {% load static%}
 
 {%block conteudo%}
-    <div class="container">
-        <br>
-        <center><h1>Monte o seu Pedido</h1></center>    
-        <br>
-    <center> 
+
+<section class="como-montar">
+    <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Tamanho do bolo</h5>
-                  <p class="card-text">Selecione o tamanho do bolo</p>
-                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBolo">Selecionar</a>
+            <div class="col-12 text-center">
+                <h1>Já montou o seu ?</h1>
+                <p>Você escolhe como quer montar o seu Naked Cake de uma forma simples e rápida.</p>
+                <p>Escolha o tamanho, as massas, os recheios e os toppings e seu Make a Cake estará pronto nos sabores que você mais gostar.</p>
+            </div>
+            <div class="col-12 d-flex flex-wrap mt-4 pb-5 box-montagem">
+                <div class="col-3 img-montagem">
+                    <img src="{% static 'images/bolo_inicial.jpg' %}" class="img-fluid" alt="">
                 </div>
-              </div>
+                <div class="col-3 img-montagem">
+                    <img src="{% static 'images/bolo_quase.jpg' %}" class="img-fluid" alt="">
+                </div>
+                <div class="col-3 img-montagem">
+                    <img src="{% static 'images/bolo_semicompleto.jpg' %}" class="img-fluid" alt="">
+                </div>
+                <div class="col-3 img-montagem">
+                    <img src="{% static 'images/bolo_completo.jpg' %}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-12 titulo">
+                <h2>1: Escolha o tamanho</h2>
+            </div>
+            <div class="col-12 mt-4 mb-4">
+                <div class="massa d-flex align-items-center flex-wrap justify-content-center">
+                    <div class="col-3">
+                        <p>Individual</p>
+                    </div>
+                    <div class="col-3">
+                        <p>Pequeno</p>
+                    </div>
+                    <div class="col-3">
+                        <p>Medio</p>
+                    </div>
+                    <div class="col-3">
+                        <p>Grande</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="img-massa d-flex align-items-center flex-wrap justify-content-center text-center">
+                    <div class="col-3 mt-3 mb-3">
+                        <img src="{% static 'images/pequeno.png' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-3 mt-3 mb-3">
+                        <img src="{% static 'images/medio.png' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-3 mt-3 mb-3">
+                        <img src="{% static 'images/grande.png' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-3 mt-3 mb-3">
+                        <img src="{% static 'images/super_grande.png' %}" class="img-fluid" alt="">
+                    </div>         
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="sobre d-flex flex-wrap align-items-center justify-content-center text-center pb-4">
+                    <div class="col-3">
+                        <p>1 fatia</p>
+                    </div>
+                    <div class="col-3">
+                        <p>10 fatias (1,2 a 1,5 kg)*</p>
+                    </div>
+                    <div class="col-3">
+                        <p>20 a 25 fatias (2 a 2,5 kg)*</p>
+                        
+                    </div>
+                    <div class="col-3">
+                        <p>30 a 35 fatias (3 a 3,5 kg)*</p>
+                    </div>   
+                    <div class="col-3">                   
+                        <br>                        
+                        <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBolo">Escolher tamanho</a></center>            
+                    </div>   
+                    
+                </div>
+               
+            </div>           
               <!-- Modal -->
-                <div class="modal fade" id="modalBolo" tabindex="-1" role="dialog" aria-labelledby="modalBolo" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="modalBolo">Selecione o Tamanho do bolo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-hover">
-                                <thead>
+              <div class="modal fade" id="modalBolo" tabindex="-1" role="dialog" aria-labelledby="modalBolo" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalBolo">Selecione o Tamanho do bolo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Preço</th>                                        
+                                    <th scope="col">Selecione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in tamanho%}
                                     <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Preço</th>                                        
-                                        <th scope="col">Selecione</th>
+                                        <td scope="row">{{ produto.nome }}</td>
+                                        <td scope="row">{{ produto.preco }}</td>                                            
+                                        <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for produto in tamanho%}
-                                        <tr>
-                                            <td scope="row">{{ produto.nome }}</td>
-                                            <td scope="row">{{ produto.preco }}</td>                                            
-                                            <td scope="row"><a type="button" class="btn btn-primary">Selecionar</a></td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>                        
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>                        
-                        </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>                        
                     </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>                        
                     </div>
                 </div>
-                <!-- /Modal -->
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Massa do bolo</h5>
-                  <p class="card-text">Selecione a massa do bolo</p>
-                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalmassa">Selecionar</a>
                 </div>
-              </div>
             </div>
-              <!-- Modal -->
-              <div class="modal fade" id="modalmassa" tabindex="-1" role="dialog" aria-labelledby="modalmassa" aria-hidden="true">
+            <!-- /Modal -->
+            <div class="col-12">
+                <h2>2: Escolha a Massa</h2>
+                <div class="recheios d-flex flex-wrap">
+                    <div class="col-4">
+                        <h3>Individual</h3>
+                        <p>2 Unidades de massa</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <img src="{% static 'images/massa.png' %}" class="img-fluid" alt="">
+                        <br>
+                        <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalmassa">Escolher Massa</a></center>
+                        <br>
+                    </div>
+                    <div class="col-4">
+                        <h3>P, M, G</h3>
+                        <p>3 Unidades de massa</p>
+                    </div>
+                </div>
+            </div>            
+            <!-- Modal -->
+            <div class="modal fade" id="modalmassa" tabindex="-1" role="dialog" aria-labelledby="modalmassa" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -88,7 +164,7 @@
                                     <tr>
                                         <td scope="row">{{ produto.nome }}</td>
                                         <td scope="row">{{ produto.preco }}</td>                                        
-                                        <td scope="row"><a type="button" class="btn btn-primary">Selecionar</a></td>
+                                        <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -101,18 +177,26 @@
                 </div>
             </div>
             <!-- /Modal -->            
-          </div>  
-          <br>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recheio do bolo</h5>
-                    <p class="card-text">Selecione o tamanho do recheio</p>
-                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalrecheio">Selecionar</a>
+            <div class="col-12">
+                <h2>3: Escolha o Recheio</h2>
+                <div class="recheios d-flex flex-wrap">
+                    <div class="col-4">
+                        <h3>Individual</h3>
+                        <p>2 Recheios</p>
+                    </div>
+                    <div class="col-4">
+                        <img src="{% static 'images/recheio.png' %}" class="img-fluid" alt="">
+                        <br>
+                        <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalrecheio">Escolher Recheio</a></center>
+                        <br>
+                    </div>
+                    <div class="col-4">
+                        <h3>P, M, G</h3>
+                        <p>3 recheios</p>                        
+                    </div>
                 </div>
-              </div>
             </div>
+           
               <!-- Modal -->
               <div class="modal fade" id="modalrecheio" tabindex="-1" role="dialog" aria-labelledby="modalrecheio" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -144,108 +228,65 @@
                         </table>                        
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>  
-                    <button type="button" class="btn btn-primary">salvar</button>                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>                      
+                    {% include 'products/snippets/update-cart.html' with product=object cart=cart %}                  
                     </div>
                 </div>
                 </div>
             </div>
-            <!-- /Modal -->                   
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Cobertura do bolo</h5>
-                    <p class="card-text">Selecione o tamanho do cobertura</p>
-                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCobertura">Selecionar</a>
+            <!-- /Modal -->  
+            <div class="col-12 text-center">
+                <h2>4: Escolha os toppings</h2>
+                <div class="col-12 pt-4 pb-4 toppings">
+                    <img src="{% static 'images/topping1.png' %}" class="img-fluid" alt="">
+                    <img src="{% static 'images/topping2.png' %}" class="img-fluid" alt="">
+                    <img src="{% static 'images/topping3.png' %}" class="img-fluid" alt="">
+                    <img src="{% static 'images/topping4.png' %}" class="img-fluid" alt="">
                 </div>
-              </div>
+                
             </div>
-              <!-- Modal -->
-              <div class="modal fade" id="modalCobertura" tabindex="-1" role="dialog" aria-labelledby="modalCobertura" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="modalCobertura">Selecione o tamanho do cobertura</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-hover">
-                            <thead>
+        </div>
+        <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTopping">Escolher Topping</a></center>
+         <!-- Modal -->
+         <div class="modal fade" id="modalTopping" tabindex="-1" role="dialog" aria-labelledby="modalTopping" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="modalTopping">Selecione o tamanho do topping</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Preço</th>                                    
+                                <th scope="col">Selecione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for produto in topping%}
                                 <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Preço</th>                                    
-                                    <th scope="col">Selecione</th>
+                                    <td scope="row">{{ produto.nome }}</td>
+                                    <td scope="row">{{ produto.preco }}</td>                                        
+                                    <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {% for produto in cobertura%}
-                                    <tr>
-                                        <td scope="row">{{ produto.nome }}</td>
-                                        <td scope="row">{{ produto.preco }}</td>                                        
-                                        <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>                        
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>   
-                    <button type="button" class="btn btn-primary">salvar</button>                    
-                    </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>                        
                 </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>    
+                {% include 'products/snippets/update-cart.html' with product=object cart=cart %}                
                 </div>
             </div>
-            <!-- /Modal -->                   
-            <div class="col-sm-4">
-                <div class="card">
-                  <div class="card-body">
-                      <h5 class="card-title">Topping do bolo</h5>
-                      <p class="card-text">Selecione o tamanho do topping</p>
-                      <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTopping">Selecionar</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Modal -->
-              <div class="modal fade" id="modalTopping" tabindex="-1" role="dialog" aria-labelledby="modalTopping" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="modalTopping">Selecione o tamanho do topping</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Preço</th>                                    
-                                    <th scope="col">Selecione</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for produto in topping%}
-                                    <tr>
-                                        <td scope="row">{{ produto.nome }}</td>
-                                        <td scope="row">{{ produto.preco }}</td>                                        
-                                        <td scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>                        
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>    
-                    <button type="button" class="btn btn-primary">salvar</button>                    
-                    </div>
-                </div>
-                </div>
             </div>
-            <!-- /Modal -->                     
-          </div>  
-        </center> 
+        </div>
+        <!-- /Modal -->                     
     </div>
+</section>
+
+    
 {%endblock conteudo%}

@@ -26,7 +26,7 @@ class Produto(Base):
     )
 
     nome = models.CharField('nome', max_length=100)
-    preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
+    preco = models.DecimalField(decimal_places=2, max_digits=20, default=100.00)
     estoque = models.IntegerField('Estoque')
     tipo = models.CharField(max_length=9, choices=PRODUTO_CHOICES, blank=False, null=False)
     imagem = StdImageField('Imagem', upload_to='produtos',  blank=True, variations={'thumb': (124,124)})
@@ -142,6 +142,13 @@ class Pedido (models.Model):
     valor_total = models.DecimalField('valor_total', max_digits = 6, decimal_places = 2)
     bolo = models.ForeignKey(Bolo, verbose_name="Bolo", on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, verbose_name="Cliente", on_delete=models.CASCADE)
+
+
+class Carrinho(models.Model):
+    user_id = models.IntegerField(null=True, blank=True)
+    produto_id = models.IntegerField(null=True, blank=True)
+    valor_decimal = models.DecimalField(max_digits=10,decimal_places=2,null=True, blank=True)
+    total_produto = models.DecimalField(max_digits=10,decimal_places=2,null=True, blank=True)
 
 
 

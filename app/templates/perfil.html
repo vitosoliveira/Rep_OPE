@@ -4,15 +4,15 @@
 
 {%block conteudo%}
 {% if not user.is_anonymous %}
+
 <div class="container">
-    <h1>Teste</h1>
-    <div class="alert alert-primary">
-        <h2>Seja bem vindo {{ user.get_full_name}}</h2>
-        <a href="{% url 'logout' %}">logout</a>
-    </div>
+    <h1>Meu perfil</h1>
+    
+
 </div>
 {%  %}
 {% endif %}
 {%endblock conteudo%}
 
 <!-- https://makeacake.com.br/ -->
+

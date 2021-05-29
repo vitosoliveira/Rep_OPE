@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'cpf_field',
     'debug_toolbar',
+    'carts',
     # 'bootstrap4',#instalar
     # 'django.contrib.messages',#instalar
     'stdimage' #instalar
