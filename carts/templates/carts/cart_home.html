@@ -5,6 +5,10 @@
 {%block conteudo%}
 {% if not user.is_anonymous %}
   <h1>Carrinho</h1>
+  <h1>{{cart.products.exists}}</h1>
+  <h1>{{products}}</h1>
+  <h1>{{cart.products}}</h1>
+  <h1>{{cart}}</h1>
   {% if cart.products.exists %}
     <table class="table">
       <thead>

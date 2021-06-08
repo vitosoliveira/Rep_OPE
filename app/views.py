@@ -3,7 +3,7 @@ from .forms import ClienteForm, ProdutoModelForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login
-from .models import Carrinho, Cliente, Produto, Carrinho
+from .models import  Cliente, Produto
 from django.template import RequestContext, context
 from django.contrib.messages import constants
 from carts.models import Cart

@@ -24,7 +24,7 @@ class Produto(Base):
         ("Tamanho", "Tamanho"),
         ("Topping", "Topping")        
     )
-
+    
     nome = models.CharField('nome', max_length=100)
     preco = models.DecimalField(decimal_places=2, max_digits=20, default=100.00)
     estoque = models.IntegerField('Estoque')
@@ -41,54 +41,6 @@ def produto_pre_save(signal, instance, sender, **kwargs):
 
 
 signals.pre_save.connect(produto_pre_save, sender=Produto)
-
-
-class Massa (models.Model):
-    id_massa = models.AutoField('id_massa',primary_key = True)
-    nome_massa = models.CharField('nome_massa',max_length = 50)
-    descricao_massa = models.CharField('descricao',max_length = 250)
-    sem_glutem = models.IntegerField('glutem')
-    sem_lactose = models.IntegerField('lactose')
-    valor_massa = models.DecimalField('valor_massa',max_digits = 6, decimal_places = 2)
-    
-class Recheio (models.Model):
-    id_recheio = models.AutoField('id_recheio', primary_key = True)
-    nome_recheio = models.CharField('nome_recheio', max_length = 50)
-    descricao_recheio = models.CharField('descricao_recheio', max_length = 250)
-    sem_glutem = models.IntegerField('glutem')
-    sem_lactose = models.IntegerField('lactose')
-    valor_recheio = models.DecimalField('valor_recheio', max_digits = 6, decimal_places = 2)
-
-
-class Cobertura (models.Model):
-    id_cobertura = models.AutoField('cobertura_id', primary_key = True)
-    nome_cobertura = models.CharField('nome_cobertura', max_length = 50)
-    descricao_cobertura = models.CharField('descricao_cobertura', max_length = 250)
-    sem_glutem = models.IntegerField('glutem')
-    sem_lactose = models.IntegerField('lactose')
-    valor_cobertura = models.DecimalField('valor_cobertura', max_digits = 6, decimal_places = 2)
-
-class Topping (models.Model):
-    id_topping = models.AutoField('íd_topping', primary_key = True)
-    nome_topping = models.CharField('nome_topping', max_length = 50)
-    descricao_topping = models.CharField('descricao_topping', max_length = 250)
-    valor_topping = models.DecimalField('valor_topping', max_digits = 6, decimal_places = 2)
-
-class Tamanho (models.Model):
-    id_tamanho = models.AutoField('Tamanho', primary_key = True)
-    nome_tamanho = models.CharField('nome_tamanho',max_length = 50)
-    valor_tamanho = models.FloatField('valor_tamanho',max_length = 20)
-
-class Bolo (models.Model):
-    id_tamanho = models.AutoField('id_bolo', primary_key = True)
-    sem_glutem = models.IntegerField('glutem')
-    sem_lactose = models.IntegerField('lactose')
-    bolo_recheio = models.ForeignKey(Recheio, verbose_name="Bolo_Recheio", on_delete = models.CASCADE)
-    bolo_massa = models.ForeignKey(Massa, verbose_name="Boloc_Massa", on_delete=models.CASCADE)
-    bolo_topping = models.ForeignKey(Topping, verbose_name="Bolo_Topping", on_delete=models.CASCADE)
-    bolo_cobertura = models.ForeignKey(Cobertura, verbose_name="Bolo_cobertura", on_delete=models.CASCADE)
-    bolo_tamanho = models.ForeignKey(Tamanho, verbose_name="Bolo_Tamanho", on_delete=models.CASCADE)
-    valor_bolo = models.DecimalField('valor_bolo', max_digits = 6, decimal_places = 2)
 
 class ClienteManager(BaseUserManager):
 
@@ -140,16 +92,7 @@ class Pedido (models.Model):
     data_hora_pedido_retirado = models.DateTimeField('data_retirado' , null=True, blank=True)
     data_hora_pedido_retirado = models.DateTimeField('data_retirado' , null=True, blank=True)
     valor_total = models.DecimalField('valor_total', max_digits = 6, decimal_places = 2)
-    bolo = models.ForeignKey(Bolo, verbose_name="Bolo", on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, verbose_name="Cliente", on_delete=models.CASCADE)
-
-
-class Carrinho(models.Model):
-    user_id = models.IntegerField(null=True, blank=True)
-    produto_id = models.IntegerField(null=True, blank=True)
-    valor_decimal = models.DecimalField(max_digits=10,decimal_places=2,null=True, blank=True)
-    total_produto = models.DecimalField(max_digits=10,decimal_places=2,null=True, blank=True)
-
 
 
 # Ver depois as relaçoes 1 pra 1 e 1 pra n e n pra n
