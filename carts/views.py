@@ -11,21 +11,14 @@ def cart_update(request):
     print(request.POST)
     product_id = request.POST.get('product_id')
     if product_id is not None:
-        try:                                                    
+        try:                                                    #*******************************************************
             product_obj = Produto.objects.get(id=product_id)
         except Produto.DoesNotExist:
             print("Mostrar mensagem ao usuário, esse produto acabou!")
             return redirect("cart:home")
         cart_obj, new_obj = Cart.objects.new_or_get(request) 
         cart_obj.products.add(product_obj)
-
+        # if product_obj in cart_obj.products.all(): 
+        #     cart_obj.products.remove(product_obj) 
         # else: 
     return redirect("cart:home")
-
-def cart_remove(request):
-    product_id = request.POST.get('product_id') 
-    product_obj = Produto.objects.get(id=product_id)
-    cart_obj, new_obj = Cart.objects.new_or_get(request) 
-    cart_obj.products.remove(product_obj) 
-    return redirect("cart:home")
-
