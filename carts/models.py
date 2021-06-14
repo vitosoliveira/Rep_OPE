@@ -7,7 +7,6 @@ User = settings.AUTH_USER_MODEL
 
 class CartManager(models.Manager):
     def new_or_get(self, request):
-        # breakpoint()
         cart_id = request.session.get("cart_id", None)
         qs = self.get_queryset().filter(id = cart_id)
         if qs.count() == 1:
@@ -41,16 +40,6 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
     
-    @property
-    def quantidade_produto(self):
-        produtos = {
-            'Massa': 2,
-            'Cobertura':3,
-            'Recheio':2,
-            'Tamanho':1,
-            'Topping':1 
-        }
-
         # for item in self.products.all():
         #     if self.q
 

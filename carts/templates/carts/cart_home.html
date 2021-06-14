@@ -5,15 +5,10 @@
 {%block conteudo%}
 {% if not user.is_anonymous %}
   <h1>Carrinho</h1>
-  <h1>{{cart.products.exists}}</h1>
-  <h1>{{products}}</h1>
-  <h1>{{cart.products}}</h1>
-  <h1>{{cart}}</h1>
   {% if cart.products.exists %}
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
           <th>Nome do produto</th>
           <th>Preço do produto</th>
         </tr>
@@ -21,9 +16,9 @@
       <tbody>
         {% for product in cart.products.all %}
         <tr>
-          <thscope="row">{{ forloop.counter }}</th>
-          <td><a href='{{ product.get_absolute_url }}'>{{ product.title }}</a><small><a href='#'>Deseja remover?</a></small></td>
-          <td>{{ product.price }}</td>
+          {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
+          <td><h4>{{ product.nome }}</h4><small><a href='{% url "cart:remove" %}{{product.id}}'>Deseja remover?</a></small></td>
+          <td>{{ product.preco }}</td>
         </tr>
         {% endfor %}
         <tr>
