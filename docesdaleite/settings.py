@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
@@ -154,8 +156,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -164,3 +165,5 @@ LOGIN_REDIRECT_URL = 'perfil'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'app.Cliente'
+
+django_heroku.settings(locals())
