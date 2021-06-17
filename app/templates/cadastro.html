@@ -3,18 +3,34 @@
 {% load static%}
 
 {%block conteudo%}
-<div class="container">
-    <form method="POST">
-    {% csrf_token %}
-        {{form.username|as_crispy_field}}
-        {{form.first_name|as_crispy_field}}
-        {{form.last_name|as_crispy_field}}
-        {{form.password1|as_crispy_field}}
-        {{form.password2|as_crispy_field}}
-        {{form.cpf|as_crispy_field}}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
-</div>
+<section class="register">
+    <div class="container">
+        <form method="POST">
+            <div class="form-row">
+                {% csrf_token %}
+                <div class="col-6">
+                    {{form.username|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.first_name|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.last_name|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.password1|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.password2|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.cpf|as_crispy_field}}
+                </div>
+                <button type="submit" class="save btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</section>
 {%endblock conteudo%}
 
 <!-- https://makeacake.com.br/ -->

@@ -75,10 +75,13 @@ class Cliente (AbstractUser):
     endereco = models.CharField('endereco', max_length=50)
     cpf = CPFField()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['cpf']
+    REQUIRED_FIELDS = ['telefone']
 
     def __str__(self):
         return self.email
+    
+    # def retorna_usuario (self, id):
+    #     return Cliente.objects.all()
     
     objects = ClienteManager()
     

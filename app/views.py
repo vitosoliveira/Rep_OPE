@@ -38,8 +38,11 @@ def cadastrar (request):
 
 
 def perfil (request):
-    if AUTH_USER_MODEL == login:
-        return render (request, 'perfil.html')
-    else:
-        return redirect('login')
+    # breakpoint()
+    context = {
+        'name': request.user.first_name,
+        'pedidos': request.user.orders_client.all(),
+        'produtos': Cart.objects.filter(user = request.user).first().products.all()
+        }    
+    return render (request, 'perfil.html', context=context)
     

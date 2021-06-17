@@ -18,6 +18,6 @@ class CustomClienteAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Informaçoes Pessoais', {'fields': ('first_name','last_name','cpf','endereco','telefone')}),
-        ('Permissoes', {'fields':('is_active', 'is_superuser', 'groups', 'user_permission')}),
+        ('Permissoes', {'fields':('is_active', 'is_superuser', 'groups')}),
         ('Datas',{'fields':('last_login','date_joined')})
     )

@@ -6,11 +6,16 @@
 {% if not user.is_anonymous %}
 
 <div class="container">
-    <h1>Meu perfil</h1>
+    <h1>Bem vindo {{name}}!</h1>
     
+    {% for pedido in pedidos %}
+        <h1>{{pedido}}!</h1>
+        {% for carrinho in produtos %}
+            <h1>trouxa: {{carrinho}}!</h1>
+        {% endfor %}
+    {% endfor %}
 
 </div>
-{%  %}
 {% endif %}
 {%endblock conteudo%}
 

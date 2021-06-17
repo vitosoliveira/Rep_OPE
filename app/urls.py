@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls.conf import include
-from .views import home,cadastrar,login,produto,perfil
+from .views import home,cadastrar,produto,perfil
 from .classes import password_reset , password_reset_done, password_reset_confirm, password_reset_complete
 from app import views 
 

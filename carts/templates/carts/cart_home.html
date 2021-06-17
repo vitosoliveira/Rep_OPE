@@ -3,42 +3,48 @@
 {% load static%}
 
 {%block conteudo%}
-{% if not user.is_anonymous %}
-  {% if cart.products.exists %}
+<div class="container">
+    {% if not user.is_anonymous %}
+    {% if cart.products.exists %}
+
     <table class="table">
-      <thead>
-        <tr>          
-          <th>Nome do produto</th>
-          <th>Preço do produto</th>
-          <th>Remover</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for product in cart.products.all %}
-        <tr>
-          <thscope="row">{{ forloop.counter }}</th>
-          <td> <a href='{{ product.get_absolute_url }}'>{{ product.nome }}</a></td>
-          <td>{{ product.preco }}</td>
-          <td>{% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}</td>
-        </tr>
-        {% endfor %}
-        <tr>
-          <tdcolspan="2"></td>
-          <td><b>Subtotal</b> {{ cart.subtotal }}</td>
-        </tr>
-        <tr>
-          <tdcolspan="2"></td>
-          <td><b>Total</b> {{ cart.total }}</td>
-        </tr>
-        <tr>
-          <td colspan="2"></td>
-          <td><a class='btn btn-lg btn-success' href='{% url "cart:checkout" %}'>Finalizar Pedido</a></td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Nome do produto</th>
+                <th>Preço do produto</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in cart.products.all %}
+            <tr>
+                <thscope="row">{{ forloop.counter }}</th>
+                    <td> <a href='{{ product.get_absolute_url }}'>{{ product.nome }}</a></td>
+                    <td>{{ product.preco }}</td>
+                    <td>{% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
+                    </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <tdcolspan="2">
+                    </td>
+                    <td><b>Subtotal</b> {{ cart.subtotal }}</td>
+            </tr>
+            <tr>
+                <tdcolspan="2">
+                    </td>
+                    <td><b>Total</b> {{ cart.total }}</td>
+            </tr>
+            <tr>
+                <td colspan ="2"></td>
+                <td><a class='btn btn-lg btn-success' href='{% url "cart:checkout" %}'>Finalizar Pedido</a></td>
+            </tr>
+        </tbody>
     </table>
-    <br>    
-  {% else %}
+    <br>
+    {% else %}
     <p class='lead'>Carrinho vazio</p>
-  {% endif %}
-  {% endif %}
-  {%endblock conteudo%}
+    {% endif %}
+    {% endif %}
+</div>
+{%endblock conteudo%}

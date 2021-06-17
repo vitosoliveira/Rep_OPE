@@ -12,7 +12,7 @@ def cart_update(request):
     print(request.POST)
     product_id = request.POST.get('product_id')
     if product_id is not None:
-        try:                                                    #*******************************************************
+        try:                                            
             product_obj = Produto.objects.get(id=product_id)
         except Produto.DoesNotExist:
             print("Mostrar mensagem ao usuário, esse produto acabou!")
@@ -36,5 +36,5 @@ def checkout_home(request):
 
     #aqui a order associada ao carrinho
     else:
-        order_obj, new_order_obj = Order.objects.get_or_create(cart = cart_obj)
+        order_obj, new_order_obj = Order.objects.get_or_create(cart = cart_obj, client_id = cart_obj.user_id)
     return render(request, "carts/checkout.html", {"object": order_obj})

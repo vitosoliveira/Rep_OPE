@@ -11,7 +11,7 @@ class ClienteForm(UserCreationForm):
     class Meta:
         model = Cliente
         fields = ('first_name','last_name', 'cpf','username')
-        labels = {'username': 'Username/E-mail'}
+        labels = {'username': 'E-mail'}
     
     def save(self, commit=True):
         user = super().save(commit=False)

@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_save
 from carts.models import Cart
 from app.utils import unique_order_id_generator
+from app.models import Cliente
 import math
 
 ORDER_STATUS_CHOICES = (
@@ -13,16 +14,16 @@ ORDER_STATUS_CHOICES = (
 
 class Order(models.Model):
     order_id = models.CharField(max_length = 120, blank = True)
-    # billing_profile = ?
-    # shipping_address = ?
-    # billing_address
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null = True, related_name='Cart_id')
+    client = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=False, related_name='orders_client')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null = True, related_name='order_cart')
     status = models.CharField(max_length = 120, default = 'created', choices = ORDER_STATUS_CHOICES )
     shipping_total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
     total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
 
     def __str__(self):
+        #representação do model
         return self.order_id
+
     def update_total(self):
         cart_total = self.cart.total
         shipping_total = self.shipping_total
@@ -34,6 +35,7 @@ class Order(models.Model):
         return new_total
 
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
+        
     if not instance.order_id:
         instance.order_id = unique_order_id_generator(instance)
 
