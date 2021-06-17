@@ -8,6 +8,10 @@ from cpf_field.models import CPFField
 
 
 class ClienteForm(UserCreationForm):
+    cpf = forms.CharField(
+        max_length = 14,
+        required = False,
+    )
     class Meta:
         model = Cliente
         fields = ('first_name','last_name', 'cpf','username')

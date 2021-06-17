@@ -1,8 +1,12 @@
 
 {% extends "base.html" %}
-{% block content %}
+{%block conteudo%}
   <h1>Checkout</h1>
+
   <p>Total do carrinho: {{ object.cart.total }}</p>
   <p>Frete: {{ object.shipping_total }}</p>
   <p>total: {{ object.total }}</p>
-{% endblock %}
+  {% for produto in produtos %}
+    <p>produtos: {{ produto }}</p>
+  {% endfor %}
+{%endblock conteudo%}

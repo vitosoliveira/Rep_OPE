@@ -73,7 +73,7 @@ class Cliente (AbstractUser):
     email = models.EmailField('email',unique=True, max_length = 254)
     telefone = models.CharField('telefone', max_length=15)
     endereco = models.CharField('endereco', max_length=50)
-    cpf = CPFField()
+    cpf = CPFField(null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['telefone']
 

@@ -20,6 +20,7 @@ class Order(models.Model):
     shipping_total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
     total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
 
+
     def __str__(self):
         #representação do model
         return self.order_id
@@ -54,9 +55,15 @@ def post_save_cart_total(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_cart_total, sender=Cart)
 
 def post_save_order(sender, instance, created, *args, **kwargs):
+    # breakpoint()
     print("Executando")
     if created:
         print("Atualizando")
         instance.update_total()
+        instance.cart.cart_confirm = True
+        instance.cart.save()
+        
+
+
 
 post_save.connect(post_save_order, sender=Order)

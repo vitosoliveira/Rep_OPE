@@ -13,7 +13,7 @@ class CartManager(models.Manager):
         # breakpoint()
         cart_id = request.session.get("cart_id", None)
         qs = self.get_queryset().filter(id = cart_id)
-        if qs.count() == 1:
+        if qs.count() == 1 and (not qs.first().cart_confirm):
             new_obj = False
             cart_obj = qs.first()
             if request.user.is_authenticated and cart_obj.user is None:
@@ -40,6 +40,8 @@ class Cart(models.Model):
     updated = models.DateTimeField(auto_now = True)
     timestamp = models.DateTimeField(auto_now_add = True)
     objects = CartManager()
+    cart_confirm = models.BooleanField(default=False)
+
 
     def __str__(self):
         return str(self.id)
