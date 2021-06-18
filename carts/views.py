@@ -59,7 +59,6 @@ def checkout_home(request):
     #se o carrinho acabou de ser criado, ele tá zerado
     #ou se o carrinho já existir mas não tiver nada dentro
     produtos = cart_obj.products.all()
-    breakpoint()
     if cart_created or cart_obj.products.count() == 0:
         return redirect("cart:home")
     #aqui a order associada ao carrinho

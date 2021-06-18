@@ -46,7 +46,6 @@ def perfil (request):
         }    
     if items != None:
         produtos = []
-        # breakpoint()
         for carrinho in items:
             produtos.append({
                 'carrinho': carrinho,
