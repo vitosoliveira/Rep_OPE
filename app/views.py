@@ -15,14 +15,18 @@ def home (request):
     return render (request, 'home.html')
 
 def produto(request):
+    
     context={        
         'tamanho': Produto.objects.filter(tipo="Tamanho"),
         'massa': Produto.objects.filter(tipo="Massa"),
         'recheio': Produto.objects.filter(tipo="Recheio"),
         'cobertura': Produto.objects.filter(tipo="Cobertura"),
-        'topping': Produto.objects.filter(tipo="Topping")
+        'topping': Produto.objects.filter(tipo="Topping"),
+        'ativo': Produto.ativo
 
     }
+    # breakpoint()
+
     return render(request, 'produto.html', context)
 
 

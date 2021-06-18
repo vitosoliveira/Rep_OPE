@@ -72,16 +72,12 @@
                         <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBolo">Escolher tamanho</a></center>            
                     </div>
                     {% else %}
-                    
+            
                     <div class="col-12 mt-5 mb-4">                   
                         <center><a type="button" class="btn btn-primary" href="/contas/login/">Fazer Login</a></center>            
                     </div>
-
                     {% endif %}
-
-                    
-                </div>
-               
+                </div>   
             </div>           
               <!-- Modal -->
               <div class="modal fade" id="modalBolo" tabindex="-1" role="dialog" aria-labelledby="modalBolo" aria-hidden="true">
@@ -107,7 +103,13 @@
                                     <tr>
                                         <td scope="row">{{ produto.nome }}</td>
                                         <td scope="row">{{ produto.preco }}</td>                                            
+                                        {% if produto.ativo == True %}
                                         <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
+                                        {% else %}
+                                        <td scope="row">
+                                            <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Indisponivel</a>
+                                        </td>
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -156,11 +158,17 @@
                             </thead>
                             <tbody>
                                 {% for produto in massa%}
-                                    <tr>
-                                        <td scope="row">{{ produto.nome }}</td>
-                                        <td scope="row">{{ produto.preco }}</td>                                        
-                                        <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
-                                    </tr>
+                                <tr>
+                                    <td scope="row">{{ produto.nome }}</td>
+                                    <td scope="row">{{ produto.preco }}</td>                                        
+                                    {% if produto.ativo == True %}
+                                    <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
+                                    {% else %}
+                                    <td scope="row">
+                                        <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Indisponivel</a>
+                                    </td>
+                                    {% endif %}
+                                </tr>
                                 {% endfor %}
                             </tbody>
                         </table>                        
@@ -208,12 +216,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 {% for produto in recheio%}
                                     <tr>
                                         <td scope="row">{{ produto.nome }}</td>
                                         <td scope="row">{{ produto.preco }}</td>      
+                                        {% if produto.ativo == True %}
                                         <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
-                                  
+                                        {% else %}
+                                        <td scope="row">
+                                            <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Indisponivel</a>
+                                        </td>
+                                        {% endif %}                                  
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -269,7 +283,13 @@
                                 <tr>
                                     <td scope="row">{{ produto.nome }}</td>
                                     <td scope="row">{{ produto.preco }}</td>                                        
-                                    <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %} </td>
+                                    {% if produto.ativo == True %}
+                                    <td scope="row">{% include 'products/snippets/update-cart.html' with product=object cart=cart %}</td>
+                                    {% else %}
+                                    <td scope="row">
+                                        <a href="#" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Indisponivel</a>
+                                    {% endif %}   
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
