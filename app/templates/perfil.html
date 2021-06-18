@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Numero do pedido</th>
+                        <th scope="col">Data Pedido</th>
                         <th scope="col">Items</th>
                     </tr>
                 </thead>
@@ -19,6 +20,9 @@
                     {% for item in items %}
                     <tr>
                         <th scope="row">{{item.orderId}}</th>
+                        <td>
+                            {{item.dia}}
+                        </td>
                         <td>
                             {% for produto in item.itemsPedido %}
                             {{produto}}

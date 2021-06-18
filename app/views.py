@@ -46,11 +46,13 @@ def perfil (request):
         }    
     if items != None:
         produtos = []
+        # breakpoint()
         for carrinho in items:
             produtos.append({
                 'carrinho': carrinho,
                 'itemsPedido': [p.nome for p in carrinho.products.all()],
-                'orderId': carrinho.order_cart.first()
+                'orderId': carrinho.order_cart.first(),
+                'dia': carrinho.timestamp
             })
         context.update({
             'items': produtos
