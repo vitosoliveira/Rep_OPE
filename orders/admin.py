@@ -7,7 +7,7 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
     model = Order
-    list_display = ['client', 'produtos', 'telefone', 'data_pedido']
+    list_display = ['pedido','client', 'produtos', 'telefone', 'data_pedido']
 
     def produtos(self, obj):
         return ", \n".join([p.nome for p in obj.cart.products.all()])
@@ -17,5 +17,8 @@ class OrderAdmin(admin.ModelAdmin):
 
     def data_pedido(self,obj):
         return obj.data_compra
+    
+    def pedido(self,obj):
+        return obj.order_id
 
 admin.site.register(Order, OrderAdmin)
