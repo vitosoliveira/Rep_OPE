@@ -4,33 +4,34 @@
 
 {%block conteudo%}
 {% if not user.is_anonymous %}
-
-<div class="container">
-    <h1>Bem vindo {{name}}!</h1>
-    <div class="row flex-column">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Numero do pedido</th>
-                    <th scope="col">Items</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <th scope="row">{{item.orderId}}</th>
-                    <td>
-                    {% for produto in item.itemsPedido %}
-                        {{produto}}
-                        <br>
-                        {% endfor %}
-                {% endfor %}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<section class="perfil">
+    <div class="container">
+        <h1>Bem vindo, <span>{{name}}!</span></h1>
+        <div class="row flex-column pt-3 pb-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Numero do pedido</th>
+                        <th scope="col">Items</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <th scope="row">{{item.orderId}}</th>
+                        <td>
+                            {% for produto in item.itemsPedido %}
+                            {{produto}}
+                            <br>
+                            {% endfor %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</section>
 {% endif %}
 {%endblock conteudo%}
 

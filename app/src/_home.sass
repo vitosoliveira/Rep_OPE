@@ -1,13 +1,45 @@
 .navbar
-    background-color: #eeeeee !important
+    background-color: #cbf0fdd7 !important
     a
-        color: #b26312 !important
+        color: #a96d31 !important
         font-weight: 600
         &:hover
             color: #2ba9b2 !important
             // background-color: #2ba9b2
 .navbar-expand-lg .navbar-nav .nav-link
     margin-right: 25px
+
+.btn-primary
+    background-color: #975A08 !important
+    font-weight: 500 !important
+    border: none !important
+.btn-primary:hover
+    background-color: #61431c !important
+
+.btn.focus, .btn:focus
+    box-shadow: 0 0 0 0.2rem #e2bf90 !important
+
+.btn-success
+    background-color: #32abb0 !important
+    font-weight: 500 !important
+    border: none !important
+    &:focus
+        box-shadow: 0 0 0 0.2rem #8dc3c5 !important
+
+.btn-success:hover
+    background-color: #35a4a8 !important
+    
+    
+
+
+.btn-primary.focus, .btn-primary:focus
+    box-shadow: 0 0 0 0.2rem #e2bf90 !important
+
+
+.form-control
+    border-color: #975A08 !important
+.form-control:focus
+    box-shadow: 0 0 0 0.2rem #e2bf90 !important
 
 .produtos
     .conteudo
@@ -27,7 +59,7 @@
         // margin-bottom: 50px
 
     .box-montagem
-        border-bottom: 1px solid #a86621
+        border-bottom: 1px solid #31a5ce
 
     .texto
         font-size: 16px
@@ -35,11 +67,12 @@
         margin-bottom: 15px
 
     .img-montagem
+        text-align: center
         img
             border-radius: 50%
-            height: 220px
+            height: 300px
             // width: 200px
-            width: 250px
+            width: 345px
     .massa, .sobre
         p
             text-align: center
@@ -50,7 +83,7 @@
             margin-bottom: 0
 
     .recheios
-        border-bottom: 1px solid #a86621
+        border-bottom: 1px solid #31a5ce
         p
             text-align: center
 
@@ -63,21 +96,67 @@
             margin-right: 25px
 
     .sobre
-        border-bottom: 1px solid #a86621
+        border-bottom: 1px solid #31a5ce
 .login
+    min-height: 750px
     form
         input
             margin-top: 25px
             margin-bottom: 25px
+    .formulario
+        border: 3px solid #cbf0fdd7
+        padding: 20px
 
 .register
+    min-height: 750px
     margin-top: 30px
-
+    .formulario
+        border: 3px solid #cbf0fdd7
+        padding: 20px
 #hint_id_username
     display: none
 
+.perfil
+    margin-top: 100px
+    // margin-bottom: 100px
+    min-height: 650px
+    h1
+        color: #975A08
+    span
+        color: #2ba9b2
+    table
+        border: 3px solid #cbf0fdd7
+    .table 
+        thead 
+            th
+                border-color: #97590859
+    .table td, .table th
+        border-color: #97590888
+
+.carrinho
+    min-height: 650px
+    h1
+        color: #2ba9b2
+    p
+        color: #975A08
+
+.checkout
+    min-height: 750px
+    padding-top: 130px
+    p
+        font-size: 25px
+        color: #975A08
+    
+    h1
+        color: #2ba9b2
+
+    .borda-checkout
+        border: 2px solid #cbf0fdd7
+        padding: 15px
+        box-shadow: 0px 1px 7px 0.2rem #dbdcdc
+
 footer
-    background-color: #D3EFFB
+    background-color: #cbf0fdd7
     min-height: 150px
     padding-top: 50px
     padding-bottom: 50px

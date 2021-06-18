@@ -3,14 +3,14 @@
 <form method='POST' action='{% url "cart:delete" %}' class="form"> {% csrf_token %}
     <input type='hidden' name='product_id' value='{{ produto.id }}' />
 {% endfor %}
-        <button type='submit' class='btn btn-link btn-sm' style="padding:0px;cursor: pointer;">Excluir
-            arrombado</button>
+        <button type='submit' class='btn btn-secondary'>Excluir
+            Produto</button>
 </form>
 
 {% else %}
 <form method='POST' action='{% url "cart:update" %}' class="form"> {% csrf_token %}
     <input type='hidden' name='product_id' value='{{ produto.id }}' />
-        <button type='submit' class='btn btn-link btn-sm' style="padding:0px;cursor: pointer;">Adicionar</button>
+        <button type='submit' class='btn btn-primary'>Adicionar</button>
 </form>
 {% endif %}
 

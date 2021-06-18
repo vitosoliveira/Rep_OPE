@@ -4,54 +4,69 @@
 
 {%block conteudo%}
 {% if messages %}
-    {% for message in messages %}
-        <div {% if message.tags %} class="alert alert-danger" role="alert"{% endif %}>
-            <p>{{ message }}</p>
-        </div>
-    {% endfor %}
-{% endif %}
-<div class="container">
-    {% if not user.is_anonymous %}
-    {% if cart.products.exists %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome do produto</th>
-                <th>Preço do produto</th>
-                <th>Remover</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in cart.products.all %}
-            <tr>
-                <thscope="1">
-                </th>
-                    <td> <a href='{{ product.get_absolute_url }}'>{{ product.nome }}</a></td>
-                    <td>{{ product.preco }}</td>
-                    <td>{% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
-                    </td>
-            </tr>
-            {% endfor %}
-            <tr>
-                <tdcolspan="2">
-                    </td>
-                    <td><b>Subtotal</b> {{ cart.subtotal }}</td>
-            </tr>
-            <tr>
-                <tdcolspan="2">
-                    </td>
-                    <td><b>Total</b> {{ cart.total }}</td>
-            </tr>
-            <tr>
-                <td colspan ="2"></td>
-                <td><a class='btn btn-lg btn-success' href='{% url "cart:checkout" %}'>Finalizar Pedido</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    {% else %}
-    <p class='lead'>Carrinho vazio</p>
-    {% endif %}
-    {% endif %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-danger" role="alert" {% endif %}>
+    <p>{{ message }}</p>
 </div>
+{% endfor %}
+{% endif %}
+<section class="carrinho">
+    <div class="container">
+        <div class="row pt-5 mt-5 flex-wrap">
+            <div class="col-12">
+                {% if not user.is_anonymous %}
+                {% if cart.products.exists %}
+                <h1>Carrinho</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome do produto</th>
+                            <th>Preço do produto</th>
+                            <th>Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in cart.products.all %}
+                        <tr>
+                            <thscope="1">
+                                </th>
+                                <td>
+                                    <p>{{ product.nome }}</p>
+                                </td>
+                                <td>R$ {{ product.preco }}</td>
+                                <td>{% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True%}
+                                </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12">
+
+                <b>Total</b> {{ cart.total }}
+                
+            </div>
+            <div class="col-12 pt-3 text-center">
+                <a href="/produto" class="btn btn-primary mr-3">Continuar Comprando</a>
+                <a class='btn btn-success' href='{% url "cart:checkout" %}'>Finalizar Pedido</a>
+            </div>
+        {% else %}
+        </div>
+        <div class="container">
+
+            <div class="row justify-content-center align-items-center flex-wrap flex-column pt-5 mt-5">
+                <h1>Carrinho vazio</h1>
+                <p>Se quiser ver os produtos</p>
+                <a href="/produto" class="btn btn-primary">Ver produtos</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</section>
+
 {%endblock conteudo%}

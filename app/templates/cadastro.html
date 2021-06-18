@@ -5,34 +5,38 @@
 {%block conteudo%}
 <section class="register">
     <div class="container">
-        <h1 class="pb-4">Registro</h1>
-        <form method="POST">
-            <div class="form-row justify-content-center">
-                {% csrf_token %}
-                <div class="col-12 col-md-4">
-                    {{form.username|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-4">
-                    {{form.first_name|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-4">
-                    {{form.last_name|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-6">
-                    {{form.password1|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-6">
-                    {{form.password2|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-6">
-                    {{form.cpf|as_crispy_field}}
-                </div>
-                <div class="col-12 col-md-6">
-                    {{form.telefone|as_crispy_field}}
-                </div>
-                <button type="submit" class="save btn btn-primary">Cadastrar</button>
+        <div class="row justify-content-center flex-wrap">
+            <div class="col-12 col-md-5 mb-5 formulario text-center">
+                <h1 class="pb-4">Registro</h1>
+                <form method="POST">
+                    <div class="form-row justify-content-center">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            {{form.username|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            {{form.first_name|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            {{form.last_name|as_crispy_field}}
+                        </div>
+                        <div class="col-12">
+                            {{form.password1|as_crispy_field}}
+                        </div>
+                        <div class="col-12 ">
+                            {{form.password2|as_crispy_field}}
+                        </div>
+                        <div class="col-12 ">
+                            {{form.cpf|as_crispy_field}}
+                        </div>
+                        <div class="col-12 ">
+                            {{form.telefone|as_crispy_field}}
+                        </div>
+                        <button type="submit" class="save btn btn-primary">Cadastrar</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 {%endblock conteudo%}

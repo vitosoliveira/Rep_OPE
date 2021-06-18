@@ -7,16 +7,18 @@
     <div class="container pt-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6 ">
+                <div class="formulario text-center">
                 <h1>Login</h1>
-                {% if user.is_anonymous %}
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <input type="email" id="username" name="username" class="form-control" placeholder="Email">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
-                    {% comment %} <a href="{% url 'resetPassword' %}">Esqueceu a senha ?</a> {% endcomment %}
-                </form>
-                {% endif %}
+                    {% if user.is_anonymous %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="email" id="username" name="username" class="form-control" placeholder="Email">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+                        {% comment %} <a href="{% url 'resetPassword' %}">Esqueceu a senha ?</a> {% endcomment %}
+                    </form>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
