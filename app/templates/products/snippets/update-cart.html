@@ -1,4 +1,3 @@
-
 {% if in_cart %}
 {% for produto in produtos %}
 <form method='POST' action='{% url "cart:delete" %}' class="form"> {% csrf_token %}

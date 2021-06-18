@@ -62,8 +62,8 @@ def post_save_order(sender, instance, created, *args, **kwargs):
         instance.update_total()
         instance.cart.cart_confirm = True
         instance.cart.save()
+
+
         
-
-
 
 post_save.connect(post_save_order, sender=Order)

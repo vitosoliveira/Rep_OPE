@@ -46,15 +46,6 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
     
-    @property
-    def quantidade_produto(self):
-        produtos = {
-            'Massa': 2,
-            'Cobertura':3,
-            'Recheio':2,
-            'Tamanho':1,
-            'Topping':1 
-        }
 
 
 def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):

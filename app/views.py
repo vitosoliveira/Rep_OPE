@@ -38,16 +38,22 @@ def cadastrar (request):
 
 
 def perfil (request):
-    items = Cart.objects.filter(user = request.user).first()
+    items = Cart.objects.filter(user = request.user, cart_confirm = True)
     context = {
         'name': request.user.first_name,
         'pedidos': [],
         'produtos':[]
         }    
     if items != None:
+        produtos = []
+        for carrinho in items:
+            produtos.append({
+                'carrinho': carrinho,
+                'itemsPedido': [p.nome for p in carrinho.products.all()],
+                'orderId': carrinho.order_cart.first()
+            })
         context.update({
-            'pedidos': request.user.orders_client.all(),
-            'produtos': Cart.objects.filter(user = request.user).first().products.all()
+            'items': produtos
             })
     return render (request, 'perfil.html', context=context)
              

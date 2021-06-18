@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from app.models import Produto
 from .models import Cart
 from orders.models import Order
+from django.contrib import messages
+
 
 
 def cart_home(request):
@@ -19,9 +21,23 @@ def cart_update(request):
             print("Mostrar mensagem ao usuário, esse produto acabou!")
             return redirect("cart:home")
         cart_obj, new_obj = Cart.objects.new_or_get(request) 
-        cart_obj.products.add(product_obj)
+        limitador = {
+            "Massa": 1,
+            "Recheio": 2,
+            "Tamanho": 1,
+            "Topping": 1   
+        }
+
+        tipo_produto = cart_obj.products.filter(tipo = product_obj.tipo)
+        if len(tipo_produto) < limitador[product_obj.tipo]:
+            cart_obj.products.add(product_obj)
+        else:
+            messages.info(request, 'Produo Já Adicionado no carrinho')
+            return redirect("carts:home")
+
+            
         
-        
+         
         # if product_obj in cart_obj.products.all(): 
         #     cart_obj.products.remove(product_obj) 
         # else: 

@@ -19,15 +19,12 @@ class Base(models.Model):
 class Produto(Base):
     PRODUTO_CHOICES = (
         ("Massa", "Massa"),
-        ("Cobertura", "Cobertura"),
         ("Recheio", "Recheio"),
         ("Tamanho", "Tamanho"),
         ("Topping", "Topping")        
     )
-    
     nome = models.CharField('nome', max_length=100)
     preco = models.DecimalField(decimal_places=2, max_digits=20, default=100.00)
-    estoque = models.IntegerField('Estoque')
     tipo = models.CharField(max_length=9, choices=PRODUTO_CHOICES, blank=False, null=False)
     imagem = StdImageField('Imagem', upload_to='produtos',  blank=True, variations={'thumb': (124,124)})
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
@@ -75,7 +72,7 @@ class Cliente (AbstractUser):
     endereco = models.CharField('endereco', max_length=50)
     cpf = CPFField(null=True)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['telefone']
+    REQUIRED_FIELDS = ['first_name']
 
     def __str__(self):
         return self.email
@@ -85,17 +82,3 @@ class Cliente (AbstractUser):
     
     objects = ClienteManager()
     
-
-
-class Pedido (models.Model):
-    id_pedido = models.AutoField('id_pedido', primary_key=True)
-    desconto = models.DecimalField('desconto', max_digits = 6, decimal_places = 2)
-    data_hora_pedido = models.DateTimeField('data_pedido')
-    data_hora_pedido_finalizado = models.DateTimeField('data_finalizado', null=True, blank=True)
-    data_hora_pedido_retirado = models.DateTimeField('data_retirado' , null=True, blank=True)
-    data_hora_pedido_retirado = models.DateTimeField('data_retirado' , null=True, blank=True)
-    valor_total = models.DecimalField('valor_total', max_digits = 6, decimal_places = 2)
-    cliente = models.ForeignKey(Cliente, verbose_name="Cliente", on_delete=models.CASCADE)
-
-
-# Ver depois as relaçoes 1 pra 1 e 1 pra n e n pra n

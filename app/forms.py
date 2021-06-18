@@ -14,7 +14,7 @@ class ClienteForm(UserCreationForm):
     )
     class Meta:
         model = Cliente
-        fields = ('first_name','last_name', 'cpf','username')
+        fields = ('first_name','last_name','telefone', 'cpf','username')
         labels = {'username': 'E-mail'}
     
     def save(self, commit=True):
@@ -35,4 +35,4 @@ class CustomClienteChangeForm(UserChangeForm):
 class ProdutoModelForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome','preco','estoque','imagem']
+        fields = ['nome','preco','imagem']

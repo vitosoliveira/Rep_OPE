@@ -7,7 +7,7 @@ from .models import Cliente, Produto
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
-    list_display=('nome' , 'preco', 'estoque', 'slug', 'criado','modificado','ativo', 'tipo')
+    list_display=('nome' , 'preco', 'slug', 'criado','modificado','ativo', 'tipo')
 
 @admin.register(Cliente)
 class CustomClienteAdmin(UserAdmin):
@@ -21,3 +21,4 @@ class CustomClienteAdmin(UserAdmin):
         ('Permissoes', {'fields':('is_active', 'is_superuser', 'groups')}),
         ('Datas',{'fields':('last_login','date_joined')})
     )
+

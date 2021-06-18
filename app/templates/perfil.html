@@ -7,17 +7,31 @@
 
 <div class="container">
     <h1>Bem vindo {{name}}!</h1>
-    
-    {% for pedido in pedidos %}
-        <h1>{{pedido}}!</h1>
-        {% for carrinho in produtos %}
-            <h1>trouxa: {{carrinho}}!</h1>
-        {% endfor %}
-    {% endfor %}
-
+    <div class="row flex-column">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Numero do pedido</th>
+                    <th scope="col">Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <th scope="row">{{item.orderId}}</th>
+                    <td>
+                    {% for produto in item.itemsPedido %}
+                        {{produto}}
+                        <br>
+                        {% endfor %}
+                {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endif %}
 {%endblock conteudo%}
 
 <!-- https://makeacake.com.br/ -->
-
