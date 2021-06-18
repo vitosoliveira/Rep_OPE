@@ -3,6 +3,7 @@ from django.db.models.signals import pre_save, post_save
 from carts.models import Cart
 from app.utils import unique_order_id_generator
 from app.models import Cliente
+
 import math
 
 ORDER_STATUS_CHOICES = (
@@ -18,7 +19,9 @@ class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null = True, related_name='order_cart')
     status = models.CharField(max_length = 120, default = 'created', choices = ORDER_STATUS_CHOICES )
     shipping_total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
+    data_compra = models.DateTimeField(auto_now_add = True)
     total = models.DecimalField(default = 0.00, max_digits = 100, decimal_places = 2)
+
 
 
     def __str__(self):

@@ -7,7 +7,7 @@
     <div class="container-fluid mt-5 mb-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1>Já montou o seu ?</h1>
+                <h1>Já montou o seu bolo ?</h1>
                 <p>Você escolhe como quer montar o seu Naked Cake de uma forma simples e rápida.</p>
                 <p>Escolha o tamanho, as massas, os recheios e os toppings.</p>
             </div>
@@ -66,9 +66,19 @@
                     <div class="col-12 col-md-3">
                         <p>30 a 35 fatias (3 a 3,5 kg)*</p>
                     </div>   
+                    {% if not user.is_anonymous %}
+
                     <div class="col-12 mt-5 mb-4">                   
                         <center><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBolo">Escolher tamanho</a></center>            
-                    </div>   
+                    </div>
+                    {% else %}
+                    
+                    <div class="col-12 mt-5 mb-4">                   
+                        <center><a type="button" class="btn btn-primary" href="/contas/login/">Fazer Login</a></center>            
+                    </div>
+
+                    {% endif %}
+
                     
                 </div>
                
@@ -115,7 +125,13 @@
                 <div class="recheios d-flex flex-wrap justify-content-center">
                     <div class="col-12 col-md-4 text-center">
                         <img src="{% static 'images/massa.png' %}" class="img-fluid" alt="">
+                        {% if not user.is_anonymous %}
                         <center><a type="button" class="btn btn-primary mt-4 mb-4" data-toggle="modal" data-target="#modalmassa">Escolher Massa</a></center>
+                        {% else %}
+                        <div class="col-12 mt-5 mb-4">                   
+                            <center><a type="button" class="btn btn-primary" href="/contas/login/">Fazer Login</a></center>            
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>            
@@ -161,7 +177,13 @@
                 <div class="recheios d-flex flex-wrap justify-content-center">
                     <div class="col-12 col-md-4 text-center">
                         <img src="{% static 'images/recheio.png' %}" class="img-fluid" alt="">
+                        {% if not user.is_anonymous %}
                         <center><a type="button" class="btn btn-primary mt-4 mb-4" data-toggle="modal" data-target="#modalrecheio">Escolher Recheio</a></center>
+                        {% else %}
+                        <div class="col-12 mt-5 mb-4">                   
+                            <center><a type="button" class="btn btn-primary" href="/contas/login/">Fazer Login</a></center>            
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -215,7 +237,13 @@
                 
             </div>
         </div>
+        {% if not user.is_anonymous %}
         <center><a type="button" class="btn btn-primary mt-4 mb-4" data-toggle="modal" data-target="#modalTopping">Escolher Topping</a></center>
+        {% else %}
+        <div class="col-12 mt-5 mb-4">                   
+            <center><a type="button" class="btn btn-primary" href="/contas/login/">Fazer Login</a></center>            
+        </div>
+        {% endif %}
          <!-- Modal -->
          <div class="modal fade" id="modalTopping" tabindex="-1" role="dialog" aria-labelledby="modalTopping" aria-hidden="true">
             <div class="modal-dialog" role="document">
